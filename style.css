@@ -1,0 +1,43 @@
+*{
+    padding:0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+}
+img{
+    display: block;
+    margin: 0 auto;
+    height: 700px;
+    width: 700px;
+}
+nav{
+    background: black;
+    height:50px;
+    width:100%;
+}
+label.logo{
+    color:white;
+    font-size:30px;
+    line-height:50px;
+    padding:0 100px;
+    font-weight:bold;
+}
+nav ul{
+    float: right;
+    margin-right: 20px;
+    color:white;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 50px;
+    margin:0 10px;
+    font-weight:bold;
+    color:white;
+}
+a{
+    color:white;
+}

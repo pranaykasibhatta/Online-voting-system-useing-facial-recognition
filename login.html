@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .card {
+            align-items: center ;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,2);
+            width: 30%;
+            height: 70%;
+            margin :auto;
+            margin-top:10%;
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            }
+            input[type=submit]{
+                
+            background-color: #45a049;
+            font-weight: bold;
+            width: 100%;
+            height: 10%;
+            }
+            input{
+                float:left;
+                padding: 7px;
+                width: 100%;
+                background-color:lavender;
+                font-weight: bold;
+            }
+    </style>
+    <title>Login</title>
+</head>
+<body onload="init()">
+   <nav>
+      <label class="logo">ONLINE VOTING SYSTEM</label>
+      <ul>
+          <li><a href="http://localhost/votingsystem/otp_send.php">VOTE</a></li>
+          <li><a href="http://localhost/votingsystem/register1.php">REGISTER</a></li>
+          <li><a class="isDisabled" href="http://localhost/votingsystem/result.php">RESULT</a></li>
+      </ul></nav> 
+     <p>
+
+    </p>
+    <div class="card" >
+    <form  method="post" enctype="multipart/form-data" action="login.py">
+    <video onclick="snapshot(this);" width=450 height=250 id="video" controls autoplay></video>
+    <br><br>
+    <input type="email" placeholder="Email" name="email"  size=63>
+    <br><br>
+    <input type="text" accept="image/jpg" hidden name="current_image" id="current_image">
+       <input type="submit"  onclick="register()" class="btn-dark" value="register"> </button>
+       <br>
+       <br>
+    </form>
+    </div>
+      <canvas  id="myCanvas" width="400" height="350" hidden></canvas>  
+  </body>
+  <script>
+      //--------------------
+      // GET USER MEDIA CODE
+      //--------------------
+          navigator.getUserMedia = ( navigator.getUserMedia ||
+                             navigator.webkitGetUserMedia ||
+                             navigator.mozGetUserMedia ||
+                             navigator.msGetUserMedia);
+
+      var video;
+      var webcamStream;
+        if (navigator.getUserMedia) {
+           navigator.getUserMedia (
+
+              // constraints
+              {
+                 video: true,
+                 audio: false
+              },
+
+              // successCallback
+              function(localMediaStream) {
+                  video = document.querySelector('video');
+                 video.srcObject = localMediaStream;
+                 webcamStream = localMediaStream;
+              },
+
+              // errorCallback
+              function(err) {
+                 console.log("The following error occured: " + err);
+              }
+           );
+        } else {
+           console.log("getUserMedia not supported");
+        }  
+
+ 
+     
+      var canvas, ctx;
+
+      function init() {
+        // Get the canvas and obtain a context for
+        // drawing in it
+mcanvas = document.getElementById("myCanvas");
+        ctx = mcanvas.getContext('2d');
+      }
+
+      function register() {
+         // Draws current image from the video element into the canvas
+        ctx.drawImage(video,0,0,mcanvas.width,mcanvas.height);
+        var dataURL = mcanvas.toDataURL('image/jpg');
+        document.getElementById("current_image").value=dataURL;
+      }
+     
+  </script>
+</html>  
